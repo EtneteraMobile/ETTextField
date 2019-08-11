@@ -13,24 +13,27 @@ public enum Border {
 }
 
 public struct TextFieldStyle {
-    let background: UIColor
-    let font: UIFont
-    let cornerRadius: CGFloat
-    let insets: UIEdgeInsets
-    let tintColor: UIColor
-    let border: [Border]
+    public var background: UIColor
+    public var font: UIFont
+    public var cornerRadius: CGFloat
+    public var insets: UIEdgeInsets
+    public var tintColor: UIColor
+    public var border: [Border]
+    public var borderColor: UIColor = .gray
 
     public init(background: UIColor = .clear,
                 font: UIFont = UIFont.systemFont(ofSize: 12),
                 tintColor: UIColor = .blue,
                 cornerRadius: CGFloat = 0.0,
                 insets: UIEdgeInsets = .zero,
-                border: [Border] = []) {
+                border: [Border] = [],
+                borderColor: UIColor = .lightGray) {
         self.background = background
         self.font = font
         self.cornerRadius = cornerRadius
         self.insets = insets
         self.tintColor = tintColor
         self.border = border
+        self.borderColor = borderColor
     }
 }
