@@ -14,6 +14,7 @@ public enum Border {
 
 public struct TextFieldStyle {
     public var background: UIColor
+    public var showTitle: Bool
     public var font: UIFont
     public var cornerRadius: CGFloat
     public var insets: UIEdgeInsets
@@ -22,6 +23,7 @@ public struct TextFieldStyle {
     public var borderColor: UIColor = .gray
 
     public init(background: UIColor = .clear,
+                showTitle: Bool = true,
                 font: UIFont = UIFont.systemFont(ofSize: 12),
                 tintColor: UIColor = .blue,
                 cornerRadius: CGFloat = 0.0,
@@ -29,6 +31,7 @@ public struct TextFieldStyle {
                 border: [Border] = [],
                 borderColor: UIColor = .lightGray) {
         self.background = background
+        self.showTitle = showTitle
         self.font = font
         self.cornerRadius = cornerRadius
         self.insets = insets
