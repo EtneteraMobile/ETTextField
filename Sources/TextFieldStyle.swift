@@ -20,7 +20,9 @@ public struct TextFieldStyle {
     public var insets: UIEdgeInsets
     public var tintColor: UIColor
     public var border: [Border]
-    public var borderColor: UIColor = .gray
+    public var borderColor: UIColor
+    public var borderWidth: CGFloat
+    public var placeholderColor: UIColor
 
     public init(background: UIColor = .clear,
                 showTitle: Bool = true,
@@ -29,7 +31,9 @@ public struct TextFieldStyle {
                 cornerRadius: CGFloat = 0.0,
                 insets: UIEdgeInsets = .zero,
                 border: [Border] = [],
-                borderColor: UIColor = .lightGray) {
+                borderColor: UIColor = .lightGray,
+                borderWidth: CGFloat = 1.0 / UIScreen.main.scale,
+                placeholderColor: UIColor = .lightGray) {
         self.background = background
         self.showTitle = showTitle
         self.font = font
@@ -38,5 +42,7 @@ public struct TextFieldStyle {
         self.tintColor = tintColor
         self.border = border
         self.borderColor = borderColor
+        self.borderWidth = borderWidth
+        self.placeholderColor = placeholderColor
     }
 }

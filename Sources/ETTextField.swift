@@ -30,6 +30,11 @@ open class ETTextField: UITextField {
             titleLabelShowConstraint?.constant = titleOffset
         }
     }
+    override open var placeholder: String? {
+        didSet {
+            attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor: style.placeholderColor])
+        }
+    }
 
     // MARK: private
 
@@ -123,7 +128,7 @@ open class ETTextField: UITextField {
         backgroundView.addSubview(border)
         border.translatesAutoresizingMaskIntoConstraints = false
 
-        let thickness: CGFloat = 2.0
+        let thickness: CGFloat = style.borderWidth
 
         switch side {
         case .top:
