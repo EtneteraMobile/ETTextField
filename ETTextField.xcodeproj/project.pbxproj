@@ -134,8 +134,7 @@
 		8933C7811EB5B7E0000D00A4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8933C7841EB5B820000D00A4 /* ETTextField.swift */,
-				8EF313B622FEF39700280089 /* TextFieldStyle.swift */,
+				8E3DBC4D23052744003F642C /* ETTextField */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -147,6 +146,15 @@
 			);
 			name = Tests;
 			path = Tests/ETTextFieldTests;
+			sourceTree = "<group>";
+		};
+		8E3DBC4D23052744003F642C /* ETTextField */ = {
+			isa = PBXGroup;
+			children = (
+				8933C7841EB5B820000D00A4 /* ETTextField.swift */,
+				8EF313B622FEF39700280089 /* TextFieldStyle.swift */,
+			);
+			path = ETTextField;
 			sourceTree = "<group>";
 		};
 		8EF313A522FEF2D100280089 /* Example */ = {
