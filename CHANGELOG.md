@@ -4,5 +4,5 @@
 
 ### Added
 
-- Title background support
-- README and CHANGELOG
+- Title background color support, disabled tint color
+- Added README and CHANGELOG

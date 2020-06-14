@@ -24,6 +24,7 @@ public struct TextFieldStyle {
     public var borderColor: UIColor
     public var borderWidth: CGFloat
     public var placeholderColor: UIColor
+    public var disabledTintColor: UIColor?
 
     public init(background: UIColor = .clear,
                 showTitle: Bool = true,
@@ -35,7 +36,8 @@ public struct TextFieldStyle {
                 border: [Border] = [],
                 borderColor: UIColor = .lightGray,
                 borderWidth: CGFloat = 1.0 / UIScreen.main.scale,
-                placeholderColor: UIColor = .lightGray) {
+                placeholderColor: UIColor = .lightGray,
+                disabledTintColor: UIColor? = nil) {
         self.background = background
         self.showTitle = showTitle
         self.titleBackground = titleBackground
@@ -47,5 +49,6 @@ public struct TextFieldStyle {
         self.borderColor = borderColor
         self.borderWidth = borderWidth
         self.placeholderColor = placeholderColor
+        self.disabledTintColor = disabledTintColor
     }
 }
