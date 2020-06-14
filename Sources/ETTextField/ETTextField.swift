@@ -171,6 +171,7 @@ open class ETTextField: UITextField {
             addLine(to: $0)
         }
         titleLabel.textColor = style.tintColor
+        titleLabel.backgroundColor = style.titleBackground
         titleLabelLeftConstraint?.constant = style.insets.left
         errorLabelLeftConstraint?.constant = style.insets.left
     }
