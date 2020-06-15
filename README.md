@@ -6,7 +6,7 @@ ETTextField is an extension of traditional UITextField which simplifies its cust
 
 ![Example](Docs/example.png)
 
-## Features:
+## Features
 - Fully customizable UI (colors, borders, insets, etc.)
 - Floating title when user starts typing
 - Error messages below text field with custom tint color
