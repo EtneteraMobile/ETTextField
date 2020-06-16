@@ -35,6 +35,11 @@ open class ETTextField: UITextField {
             attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor: style.placeholderColor])
         }
     }
+    override open var isEnabled: Bool {
+        didSet {
+            update(with: style)
+        }
+    }
 
     // MARK: private
 
@@ -124,7 +129,7 @@ open class ETTextField: UITextField {
 
     private func addLine(to side: Border) {
         let border = UIView()
-        border.backgroundColor = style.borderColor
+        border.backgroundColor = (!isEnabled && style.disabledTintColor != nil) ? style.disabledTintColor : style.borderColor
         backgroundView.addSubview(border)
         border.translatesAutoresizingMaskIntoConstraints = false
 
@@ -170,7 +175,8 @@ open class ETTextField: UITextField {
         style.border.forEach {
             addLine(to: $0)
         }
-        titleLabel.textColor = style.tintColor
+        titleLabel.textColor = (!isEnabled && style.disabledTintColor != nil) ? style.disabledTintColor : style.tintColor
+        titleLabel.backgroundColor = style.titleBackground
         titleLabelLeftConstraint?.constant = style.insets.left
         errorLabelLeftConstraint?.constant = style.insets.left
     }

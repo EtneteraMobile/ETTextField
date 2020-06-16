@@ -15,6 +15,7 @@ public enum Border {
 public struct TextFieldStyle {
     public var background: UIColor
     public var showTitle: Bool
+    public var titleBackground: UIColor
     public var font: UIFont
     public var cornerRadius: CGFloat
     public var insets: UIEdgeInsets
@@ -23,9 +24,11 @@ public struct TextFieldStyle {
     public var borderColor: UIColor
     public var borderWidth: CGFloat
     public var placeholderColor: UIColor
+    public var disabledTintColor: UIColor?
 
     public init(background: UIColor = .clear,
                 showTitle: Bool = true,
+                titleBackground: UIColor = .clear,
                 font: UIFont = UIFont.systemFont(ofSize: 12),
                 tintColor: UIColor = .blue,
                 cornerRadius: CGFloat = 0.0,
@@ -33,9 +36,11 @@ public struct TextFieldStyle {
                 border: [Border] = [],
                 borderColor: UIColor = .lightGray,
                 borderWidth: CGFloat = 1.0 / UIScreen.main.scale,
-                placeholderColor: UIColor = .lightGray) {
+                placeholderColor: UIColor = .lightGray,
+                disabledTintColor: UIColor? = nil) {
         self.background = background
         self.showTitle = showTitle
+        self.titleBackground = titleBackground
         self.font = font
         self.cornerRadius = cornerRadius
         self.insets = insets
@@ -44,5 +49,6 @@ public struct TextFieldStyle {
         self.borderColor = borderColor
         self.borderWidth = borderWidth
         self.placeholderColor = placeholderColor
+        self.disabledTintColor = disabledTintColor
     }
 }
