@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name         = "ETTextField"
   s.version      = "0.1"
-  s.summary      = ""
+  s.summary      = "ETTextField is an extension of traditional UITextField which simplifies its customization and event handling."
   s.description  = <<-DESC
-    Your description here.
+    ETTextField is an extension of traditional UITextField which simplifies its customization and event handling.
   DESC
-  s.homepage     = ""
+  s.homepage     = "https://github.com/EtneteraMobile/ETTextField"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Miroslav Beles" => "miroslav.beles@etnetera.cz" }
   s.social_media_url   = ""
