@@ -45,7 +45,7 @@ open class ETTextField: UITextField {
 
     private let animationDuration: TimeInterval = 0.2
     private var isErrorHidden: Bool = true
-    private var borders: [UIView] = []
+    private var border = TextFieldBorder()
     private let backgroundView = UIView()
     private let titleLabel = UILabel()
     private let errorLabel = UILabel()
@@ -91,6 +91,13 @@ open class ETTextField: UITextField {
         backgroundView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         backgroundView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
+        backgroundView.addSubview(border)
+        border.translatesAutoresizingMaskIntoConstraints = false
+        border.topAnchor.constraint(equalTo: backgroundView.topAnchor).isActive = true
+        border.leftAnchor.constraint(equalTo: backgroundView.leftAnchor).isActive = true
+        border.rightAnchor.constraint(equalTo: backgroundView.rightAnchor).isActive = true
+        border.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor).isActive = true
     }
 
     private func setupErrorLabel() {
@@ -127,41 +134,6 @@ open class ETTextField: UITextField {
         titleLabelShowConstraint?.isActive = false
     }
 
-    private func addLine(to side: Border) {
-        let border = UIView()
-        border.backgroundColor = (!isEnabled && style.disabledTintColor != nil) ? style.disabledTintColor : style.borderColor
-        backgroundView.addSubview(border)
-        border.translatesAutoresizingMaskIntoConstraints = false
-
-        let thickness: CGFloat = style.borderWidth
-
-        switch side {
-        case .top:
-            border.topAnchor.constraint(equalTo: topAnchor).isActive = true
-            border.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-            border.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-            border.heightAnchor.constraint(equalToConstant: thickness).isActive = true
-        case .right:
-            border.topAnchor.constraint(equalTo: topAnchor).isActive = true
-            border.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-            border.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-            border.widthAnchor.constraint(equalToConstant: thickness).isActive = true
-        case .bottom:
-            border.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-            border.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-            border.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-            border.heightAnchor.constraint(equalToConstant: thickness).isActive = true
-            break
-        case .left:
-            border.topAnchor.constraint(equalTo: topAnchor).isActive = true
-            border.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-            border.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-            border.widthAnchor.constraint(equalToConstant: thickness).isActive = true
-        }
-
-        borders.append(border)
-    }
-
 
     // MARK: - Customization
 
@@ -171,11 +143,11 @@ open class ETTextField: UITextField {
         font = style.font
         backgroundView.layer.cornerRadius = style.cornerRadius
         insets = style.insets
-        tintColor = style.tintColor
-        style.border.forEach {
-            addLine(to: $0)
-        }
-        titleLabel.textColor = (!isEnabled && style.disabledTintColor != nil) ? style.disabledTintColor : style.tintColor
+        tintColor = (!isEnabled && style.disabledTintColor != nil) ? style.disabledTintColor : style.tintColor
+
+        border.update(with: TextFieldBorder.Style(sides: style.border, color: tintColor, width: style.borderWidth, cornerRadius: style.cornerRadius))
+
+        titleLabel.textColor = tintColor
         titleLabel.backgroundColor = style.titleBackground
         titleLabelLeftConstraint?.constant = style.insets.left
         errorLabelLeftConstraint?.constant = style.insets.left
@@ -187,9 +159,7 @@ open class ETTextField: UITextField {
         errorLabel.text = message
         self.layoutIfNeeded()
         UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseIn, animations: {
-            self.borders.forEach {
-                $0.backgroundColor = .red
-            }
+            self.border.updateColor(.red)
             self.errorLabelHideConstraint?.isActive = false
             self.errorLabelShowConstraint?.isActive = true
             self.errorLabel.alpha = 1.0
@@ -203,9 +173,7 @@ open class ETTextField: UITextField {
         errorLabel.text = nil
         self.layoutIfNeeded()
         UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
-            self.borders.forEach {
-                $0.backgroundColor = self.style.borderColor
-            }
+            self.border.updateColor(self.tintColor)
             self.errorLabelHideConstraint?.isActive = true
             self.errorLabelShowConstraint?.isActive = false
             self.errorLabel.alpha = 0.0

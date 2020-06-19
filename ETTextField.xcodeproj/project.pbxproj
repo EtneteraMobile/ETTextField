@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		52D6D9871BEFF229002C0205 /* ETTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* ETTextField.framework */; };
+		80DEDFCC249A4C9A0049F0B9 /* TextFieldBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DEDFCB249A4C9A0049F0B9 /* TextFieldBorder.swift */; };
 		8933C7851EB5B820000D00A4 /* ETTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* ETTextField.swift */; };
 		8933C7901EB5B82D000D00A4 /* ETTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* ETTextFieldTests.swift */; };
 		8EF313A722FEF2D100280089 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF313A622FEF2D100280089 /* AppDelegate.swift */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		52D6D97C1BEFF229002C0205 /* ETTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ETTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9861BEFF229002C0205 /* ETTextField-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ETTextField-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80DEDFCB249A4C9A0049F0B9 /* TextFieldBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldBorder.swift; sourceTree = "<group>"; };
 		8933C7841EB5B820000D00A4 /* ETTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETTextField.swift; sourceTree = "<group>"; };
 		8933C7891EB5B82A000D00A4 /* ETTextFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETTextFieldTests.swift; sourceTree = "<group>"; };
 		8EF313A422FEF2D100280089 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +155,7 @@
 			children = (
 				8933C7841EB5B820000D00A4 /* ETTextField.swift */,
 				8EF313B622FEF39700280089 /* TextFieldStyle.swift */,
+				80DEDFCB249A4C9A0049F0B9 /* TextFieldBorder.swift */,
 			);
 			path = ETTextField;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80DEDFCC249A4C9A0049F0B9 /* TextFieldBorder.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* ETTextField.swift in Sources */,
 				8EF313B722FEF39700280089 /* TextFieldStyle.swift in Sources */,
 			);

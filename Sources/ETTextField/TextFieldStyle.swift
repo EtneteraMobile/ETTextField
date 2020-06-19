@@ -9,7 +9,7 @@
 import UIKit
 
 public enum Border {
-    case top, right, bottom, left
+    case top, right, bottom, left, all
 }
 
 public struct TextFieldStyle {
