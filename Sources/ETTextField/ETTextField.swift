@@ -44,6 +44,7 @@ open class ETTextField: UITextField {
     // MARK: private
 
     private let animationDuration: TimeInterval = 0.2
+    private let errorColor: UIColor = .red
     private var isErrorHidden: Bool = true
     private var border = TextFieldBorder()
     private let backgroundView = UIView()
@@ -56,11 +57,13 @@ open class ETTextField: UITextField {
     private var errorLabelHideConstraint: NSLayoutConstraint?
     private var errorLabelLeftConstraint: NSLayoutConstraint?
     private var isTitleHidden: Bool = true
+    private var borderColor: UIColor
 
     // MARK: - Initialization
 
     public init(style: TextFieldStyle = TextFieldStyle()) {
         self.style = style
+        self.borderColor = style.borderColor
         super.init(frame: .zero)
 
         setupContent()
@@ -103,7 +106,7 @@ open class ETTextField: UITextField {
     private func setupErrorLabel() {
         errorLabel.alpha = 0.0
         errorLabel.font = UIFont.systemFont(ofSize: 12)
-        errorLabel.textColor = .red
+        errorLabel.textColor = errorColor
 
         addSubview(errorLabel)
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -143,9 +146,21 @@ open class ETTextField: UITextField {
         font = style.font
         backgroundView.layer.cornerRadius = style.cornerRadius
         insets = style.insets
-        tintColor = (!isEnabled && style.disabledTintColor != nil) ? style.disabledTintColor : style.tintColor
 
-        border.update(with: TextFieldBorder.Style(sides: style.border, color: tintColor, width: style.borderWidth, cornerRadius: style.cornerRadius))
+        if let disabledColor = style.disabledTintColor, !isEnabled {
+            tintColor = disabledColor
+            borderColor = disabledColor
+        } else {
+            tintColor = style.tintColor
+            borderColor = style.borderColor
+        }
+
+        border.update(with: TextFieldBorder.Style(
+            sides: style.border,
+            color: isErrorHidden ? borderColor : errorColor,
+            width: style.borderWidth,
+            cornerRadius: style.cornerRadius
+        ))
 
         titleLabel.textColor = tintColor
         titleLabel.backgroundColor = style.titleBackground
@@ -159,7 +174,10 @@ open class ETTextField: UITextField {
         errorLabel.text = message
         self.layoutIfNeeded()
         UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseIn, animations: {
-            self.border.updateColor(.red)
+            if self.isEnabled || self.style.disabledTintColor == nil {
+                self.border.updateColor(self.errorColor)
+            }
+
             self.errorLabelHideConstraint?.isActive = false
             self.errorLabelShowConstraint?.isActive = true
             self.errorLabel.alpha = 1.0
@@ -173,7 +191,7 @@ open class ETTextField: UITextField {
         errorLabel.text = nil
         self.layoutIfNeeded()
         UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
-            self.border.updateColor(self.tintColor)
+            self.border.updateColor(self.borderColor)
             self.errorLabelHideConstraint?.isActive = true
             self.errorLabelShowConstraint?.isActive = false
             self.errorLabel.alpha = 0.0
