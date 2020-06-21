@@ -171,6 +171,7 @@ open class ETTextField: UITextField {
     // MARK: - Actions
 
     open func showError(message: String) {
+        isErrorHidden = false
         errorLabel.text = message
         self.layoutIfNeeded()
         UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseIn, animations: {
@@ -182,12 +183,11 @@ open class ETTextField: UITextField {
             self.errorLabelShowConstraint?.isActive = true
             self.errorLabel.alpha = 1.0
             self.layoutIfNeeded()
-        }, completion: { _ in
-            self.isErrorHidden = false
-        })
+        }, completion: nil)
     }
 
     open func hideError() {
+        isErrorHidden = true
         errorLabel.text = nil
         self.layoutIfNeeded()
         UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
@@ -196,9 +196,7 @@ open class ETTextField: UITextField {
             self.errorLabelShowConstraint?.isActive = false
             self.errorLabel.alpha = 0.0
             self.layoutIfNeeded()
-        }, completion: { _ in
-            self.isErrorHidden = true
-        })
+        }, completion: nil)
     }
 
     open func showTitle() {
