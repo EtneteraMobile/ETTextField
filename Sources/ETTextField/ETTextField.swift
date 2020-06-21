@@ -146,12 +146,13 @@ open class ETTextField: UITextField {
         font = style.font
         backgroundView.layer.cornerRadius = style.cornerRadius
         insets = style.insets
+        tintColor = style.tintColor
 
         if let disabledColor = style.disabledTintColor, !isEnabled {
-            tintColor = disabledColor
+            titleLabel.textColor = disabledColor
             borderColor = disabledColor
         } else {
-            tintColor = style.tintColor
+            titleLabel.textColor = style.tintColor
             borderColor = style.borderColor
         }
 
@@ -162,7 +163,6 @@ open class ETTextField: UITextField {
             cornerRadius: style.cornerRadius
         ))
 
-        titleLabel.textColor = tintColor
         titleLabel.backgroundColor = style.titleBackground
         titleLabelLeftConstraint?.constant = style.insets.left
         errorLabelLeftConstraint?.constant = style.insets.left
