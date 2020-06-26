@@ -23,14 +23,6 @@ class TextFieldBorder: UIView {
     private var right: UIView?
     private var all: UIView?
 
-    init() {
-        super.init(frame: .zero)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     func update(with style: Style) {
         clear()
 
@@ -98,11 +90,9 @@ class TextFieldBorder: UIView {
     }
 
     private func clear() {
-        clearLine(.top)
-        clearLine(.bottom)
-        clearLine(.left)
-        clearLine(.right)
-        clearLine(.all)
+        [Border.top, Border.bottom, Border.left, Border.right, Border.all].forEach {
+            clearLine($0)
+        }
     }
 
     private func clearLine(_ side: Border) {
