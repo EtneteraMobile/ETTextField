@@ -75,11 +75,11 @@ class ExampleController: UIViewController {
     
     private func setupTextFieldThree() {
         let style = TextFieldStyle(background: .clear,
-                                    font: UIFont.systemFont(ofSize: 14, weight: .light),
-                                    tintColor: .blue,
-                                    cornerRadius: 0.0,
-                                    insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10),
-                                    borderColor: .lightGray)
+                                   font: UIFont.systemFont(ofSize: 14, weight: .light),
+                                   tintColor: .blue,
+                                   cornerRadius: 0.0,
+                                   insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10),
+                                   borderColor: .lightGray)
         
         customErrorTextField.update(with: style)
         customErrorTextField.placeholder = "Enter your e-mail"
