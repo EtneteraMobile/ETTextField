@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11B4908124B8745800265D87 /* ETCustomErrorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4908024B8745800265D87 /* ETCustomErrorTextField.swift */; };
 		52D6D9871BEFF229002C0205 /* ETTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* ETTextField.framework */; };
 		80DEDFCC249A4C9A0049F0B9 /* TextFieldBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DEDFCB249A4C9A0049F0B9 /* TextFieldBorder.swift */; };
 		8933C7851EB5B820000D00A4 /* ETTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* ETTextField.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		11B4908024B8745800265D87 /* ETCustomErrorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETCustomErrorTextField.swift; sourceTree = "<group>"; };
 		52D6D97C1BEFF229002C0205 /* ETTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ETTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9861BEFF229002C0205 /* ETTextField-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ETTextField-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DEDFCB249A4C9A0049F0B9 /* TextFieldBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldBorder.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				8933C7841EB5B820000D00A4 /* ETTextField.swift */,
 				8EF313B622FEF39700280089 /* TextFieldStyle.swift */,
 				80DEDFCB249A4C9A0049F0B9 /* TextFieldBorder.swift */,
+				11B4908024B8745800265D87 /* ETCustomErrorTextField.swift */,
 			);
 			path = ETTextField;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80DEDFCC249A4C9A0049F0B9 /* TextFieldBorder.swift in Sources */,
+				11B4908124B8745800265D87 /* ETCustomErrorTextField.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* ETTextField.swift in Sources */,
 				8EF313B722FEF39700280089 /* TextFieldStyle.swift in Sources */,
 			);

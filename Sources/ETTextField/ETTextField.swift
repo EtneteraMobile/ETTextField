@@ -43,10 +43,6 @@ open class ETTextField: UITextField {
 
     // MARK: private
 
-    private let animationDuration: TimeInterval = 0.2
-    private let errorColor: UIColor = .red
-    private var isErrorHidden: Bool = true
-    private var border = TextFieldBorder()
     private let backgroundView = UIView()
     private let titleLabel = UILabel()
     private let errorLabel = UILabel()
@@ -57,7 +53,14 @@ open class ETTextField: UITextField {
     private var errorLabelHideConstraint: NSLayoutConstraint?
     private var errorLabelLeftConstraint: NSLayoutConstraint?
     private var isTitleHidden: Bool = true
-    private var borderColor: UIColor
+    
+    // MARK: protected
+    
+    let animationDuration: TimeInterval = 0.2
+    let errorColor: UIColor = .red
+    var border = TextFieldBorder()
+    var borderColor: UIColor
+    var isErrorHidden: Bool = true
 
     // MARK: - Initialization
 
@@ -137,7 +140,6 @@ open class ETTextField: UITextField {
         titleLabelShowConstraint?.isActive = false
     }
 
-
     // MARK: - Customization
 
     open func update(with style: TextFieldStyle) {
@@ -183,20 +185,21 @@ open class ETTextField: UITextField {
             self.errorLabelShowConstraint?.isActive = true
             self.errorLabel.alpha = 1.0
             self.layoutIfNeeded()
-        }, completion: nil)
+        })
     }
 
     open func hideError() {
         isErrorHidden = true
-        errorLabel.text = nil
         self.layoutIfNeeded()
         UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
             self.border.updateColor(self.borderColor)
-            self.errorLabelHideConstraint?.isActive = true
             self.errorLabelShowConstraint?.isActive = false
+            self.errorLabelHideConstraint?.isActive = true
             self.errorLabel.alpha = 0.0
             self.layoutIfNeeded()
-        }, completion: nil)
+        }, completion: { _ in
+            self.errorLabel.text = nil
+        })
     }
 
     open func showTitle() {

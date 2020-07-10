@@ -13,6 +13,7 @@ class ExampleController: UIViewController {
 
     private let textField1 = ETTextField()
     private let textField2 = ETTextField()
+    private lazy var customErrorTextField = ETCustomErrorTextField(errorView: self.makeCustomErrorView())
     private let button = UIButton()
 
     override func viewDidLoad() {
@@ -20,6 +21,7 @@ class ExampleController: UIViewController {
         view.backgroundColor = .white
         setupTextFieldOne()
         setupTextFieldTwo()
+        setupTextFieldThree()
         setupShowErrorButton()
         setupObservers()
 
@@ -70,6 +72,26 @@ class ExampleController: UIViewController {
         textField2.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         textField2.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
+    
+    private func setupTextFieldThree() {
+        let style = TextFieldStyle(background: .clear,
+                                    font: UIFont.systemFont(ofSize: 14, weight: .light),
+                                    tintColor: .blue,
+                                    cornerRadius: 0.0,
+                                    insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10),
+                                    borderColor: .lightGray)
+        
+        customErrorTextField.update(with: style)
+        customErrorTextField.placeholder = "Enter your e-mail"
+        customErrorTextField.title = "YOUR E-MAIL"
+        
+        view.addSubview(customErrorTextField)
+        customErrorTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        customErrorTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        customErrorTextField.topAnchor.constraint(equalTo: textField2.bottomAnchor, constant: 35).isActive = true
+        customErrorTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+    }
 
     private func setupShowErrorButton() {
         button.setTitle("Show errors", for: .normal)
@@ -78,7 +100,7 @@ class ExampleController: UIViewController {
         view.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        button.topAnchor.constraint(equalTo: textField2.bottomAnchor, constant: 35).isActive = true
+        button.topAnchor.constraint(equalTo: customErrorTextField.bottomAnchor, constant: 35).isActive = true
         button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         button.heightAnchor.constraint(equalToConstant: 30).isActive = true
         button.addTarget(self, action: #selector(showError), for: .touchUpInside)
@@ -126,11 +148,51 @@ class ExampleController: UIViewController {
         textField2.onReturnKeyPressed.observe(owner: label) {
             label.text = "TextField 2: Did press return key"
         }
+
+        customErrorTextField.onDidBeginEditing.observe(owner: label) {
+            label.text = "TextField 3: Did begin editing"
+        }
+
+        customErrorTextField.onDidEndEditing.observe(owner: label) {
+            label.text = "TextField 3: Did end editing"
+        }
+
+        customErrorTextField.onDidChangeText.observe(owner: label) { text in
+            label.text = "TextField 3: \(text ?? "<empty>")"
+        }
+        
+        customErrorTextField.onReturnKeyPressed.observe(owner: label) {
+            label.text = "TextField 3: Did press return key"
+        }
+    }
+
+    private func makeCustomErrorView() -> UIView {
+        let customErrorView = UIView()
+        customErrorView.backgroundColor = .red
+        
+        let errorLabel = UILabel()
+        errorLabel.numberOfLines = 0
+        errorLabel.lineBreakMode = .byWordWrapping
+        errorLabel.text = "Wrong e-mail format"
+        errorLabel.textColor = .white
+        errorLabel.font = UIFont.systemFont(ofSize: 12)
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        customErrorView.addSubview(errorLabel)
+        
+        NSLayoutConstraint.activate([
+            errorLabel.topAnchor.constraint(equalTo: customErrorView.topAnchor, constant: 5),
+            errorLabel.leadingAnchor.constraint(equalTo: customErrorView.leadingAnchor, constant: 5),
+            errorLabel.trailingAnchor.constraint(equalTo: customErrorView.trailingAnchor, constant: -5),
+            errorLabel.bottomAnchor.constraint(equalTo: customErrorView.bottomAnchor, constant: -5)
+        ])
+        return customErrorView
     }
 
     @objc private func showError() {
         textField1.showError(message: "Error example")
         textField2.showError(message: "Error example")
+        customErrorTextField.showError()
     }
 
     @objc private func didTapOutside() {
