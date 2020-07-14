@@ -57,10 +57,6 @@ For more info see included example project.
 
 ## Installation
 
-### CocoaPods
-
-Add `pod 'ETTextField'` to your Podfile.
-
 ### Carthage
 
 Add `github "EtneteraMobile/ETTextField"` to your Cartfile.
