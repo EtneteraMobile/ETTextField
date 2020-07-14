@@ -11,17 +11,17 @@ import ETTextField
 
 class ExampleController: UIViewController {
 
-    private let textField1 = ETTextField()
-    private let textField2 = ETTextField()
-    private lazy var customErrorTextField = ETCustomErrorTextField(errorView: self.makeCustomErrorView())
+    private let firstNameTF = ETTextField()
+    private let secondNameTF = ETTextField()
+    private lazy var customErrorTF = ETCustomErrorTextField(errorView: self.makeCustomErrorView())
     private let button = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupTextFieldOne()
-        setupTextFieldTwo()
-        setupTextFieldThree()
+        setupFirstNameTF()
+        setupSecondNameTF()
+        setupCustomErrorTF()
         setupShowErrorButton()
         setupObservers()
 
@@ -29,51 +29,51 @@ class ExampleController: UIViewController {
         view.addGestureRecognizer(tapRecognizer)
     }
 
-    private func setupTextFieldOne() {
-        let style1 = TextFieldStyle(background: UIColor(white: 245.0/255.0, alpha: 1),
+    private func setupFirstNameTF() {
+        let style = TextFieldStyle(background: UIColor(white: 245.0/255.0, alpha: 1),
                                     font: UIFont.systemFont(ofSize: 14, weight: .light),
                                     tintColor: .blue,
                                     cornerRadius: 5.0,
                                     insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10),
                                     border: [.bottom],
                                     borderColor: .blue)
-        textField1.update(with: style1)
-        textField1.placeholder = "Enter your first name"
-        textField1.title = "YOUR FIRST NAME:"
-        textField1.titleOffset = -3.0
+        firstNameTF.update(with: style)
+        firstNameTF.placeholder = "Enter your first name"
+        firstNameTF.title = "YOUR FIRST NAME:"
+        firstNameTF.titleOffset = -3.0
 
-        view.addSubview(textField1)
-        textField1.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(firstNameTF)
+        firstNameTF.translatesAutoresizingMaskIntoConstraints = false
 
-        textField1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        textField1.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
-        textField1.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        textField1.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        firstNameTF.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        firstNameTF.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        firstNameTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        firstNameTF.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
 
-    private func setupTextFieldTwo() {
-        let style2 = TextFieldStyle(background: .clear,
+    private func setupSecondNameTF() {
+        let style = TextFieldStyle(background: .clear,
                                     font: UIFont.systemFont(ofSize: 14, weight: .light),
                                     tintColor: .blue,
                                     cornerRadius: 0.0,
                                     insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10),
                                     border: [.top, .right, .bottom, .left],
                                     borderColor: .lightGray)
-        textField2.update(with: style2)
-        textField2.placeholder = "Enter your last name"
-        textField2.title = "YOUR LAST NAME:"
-        textField2.titleOffset = -3.0
+        secondNameTF.update(with: style)
+        secondNameTF.placeholder = "Enter your last name"
+        secondNameTF.title = "YOUR LAST NAME:"
+        secondNameTF.titleOffset = -3.0
 
-        view.addSubview(textField2)
-        textField2.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(secondNameTF)
+        secondNameTF.translatesAutoresizingMaskIntoConstraints = false
 
-        textField2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        textField2.topAnchor.constraint(equalTo: textField1.bottomAnchor, constant: 35).isActive = true
-        textField2.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        textField2.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        secondNameTF.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        secondNameTF.topAnchor.constraint(equalTo: firstNameTF.bottomAnchor, constant: 35).isActive = true
+        secondNameTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        secondNameTF.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
-    private func setupTextFieldThree() {
+    private func setupCustomErrorTF() {
         let style = TextFieldStyle(background: .clear,
                                    font: UIFont.systemFont(ofSize: 14, weight: .light),
                                    tintColor: .blue,
@@ -81,16 +81,16 @@ class ExampleController: UIViewController {
                                    insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10),
                                    borderColor: .lightGray)
         
-        customErrorTextField.update(with: style)
-        customErrorTextField.placeholder = "Enter your e-mail"
-        customErrorTextField.title = "YOUR E-MAIL"
+        customErrorTF.update(with: style)
+        customErrorTF.placeholder = "Enter your e-mail"
+        customErrorTF.title = "YOUR E-MAIL"
         
-        view.addSubview(customErrorTextField)
-        customErrorTextField.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(customErrorTF)
+        customErrorTF.translatesAutoresizingMaskIntoConstraints = false
         
-        customErrorTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        customErrorTextField.topAnchor.constraint(equalTo: textField2.bottomAnchor, constant: 35).isActive = true
-        customErrorTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        customErrorTF.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        customErrorTF.topAnchor.constraint(equalTo: secondNameTF.bottomAnchor, constant: 35).isActive = true
+        customErrorTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
     }
 
     private func setupShowErrorButton() {
@@ -100,7 +100,7 @@ class ExampleController: UIViewController {
         view.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        button.topAnchor.constraint(equalTo: customErrorTextField.bottomAnchor, constant: 35).isActive = true
+        button.topAnchor.constraint(equalTo: customErrorTF.bottomAnchor, constant: 35).isActive = true
         button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         button.heightAnchor.constraint(equalToConstant: 30).isActive = true
         button.addTarget(self, action: #selector(showError), for: .touchUpInside)
@@ -116,53 +116,53 @@ class ExampleController: UIViewController {
         label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 35).isActive = true
         label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
 
-        textField1.onDidBeginEditing.observe(owner: label) {
-            label.text = "TextField 1: Did begin editing"
+        firstNameTF.onDidBeginEditing.observe(owner: label) {
+            label.text = "firstNameTF: Did begin editing"
         }
 
-        textField1.onDidEndEditing.observe(owner: label) {
-            label.text = "TextField 1: Did end editing"
+        firstNameTF.onDidEndEditing.observe(owner: label) {
+            label.text = "firstNameTF: Did end editing"
         }
 
-        textField1.onDidChangeText.observe(owner: label) { text in
-            label.text = "TextField 1: \(text ?? "<empty>")"
+        firstNameTF.onDidChangeText.observe(owner: label) { text in
+            label.text = "firstNameTF: \(text ?? "<empty>")"
         }
 
-        textField1.onReturnKeyPressed.observe(owner: self) {
-            label.text = "TextField 1: Did press return key"
-            self.textField2.becomeFirstResponder()
+        firstNameTF.onReturnKeyPressed.observe(owner: self) {
+            label.text = "firstNameTF: Did press return key"
+            self.secondNameTF.becomeFirstResponder()
         }
 
-        textField2.onDidBeginEditing.observe(owner: label) {
-            label.text = "TextField 2: Did begin editing"
+        secondNameTF.onDidBeginEditing.observe(owner: label) {
+            label.text = "secondNameTF: Did begin editing"
         }
 
-        textField2.onDidEndEditing.observe(owner: label) {
-            label.text = "TextField 2: Did end editing"
+        secondNameTF.onDidEndEditing.observe(owner: label) {
+            label.text = "secondNameTF: Did end editing"
         }
 
-        textField2.onDidChangeText.observe(owner: label) { text in
-            label.text = "TextField 2: \(text ?? "<empty>")"
+        secondNameTF.onDidChangeText.observe(owner: label) { text in
+            label.text = "secondNameTF: \(text ?? "<empty>")"
         }
 
-        textField2.onReturnKeyPressed.observe(owner: label) {
-            label.text = "TextField 2: Did press return key"
+        secondNameTF.onReturnKeyPressed.observe(owner: label) {
+            label.text = "secondNameTF: Did press return key"
         }
 
-        customErrorTextField.onDidBeginEditing.observe(owner: label) {
-            label.text = "TextField 3: Did begin editing"
+        customErrorTF.onDidBeginEditing.observe(owner: label) {
+            label.text = "customErrorTF: Did begin editing"
         }
 
-        customErrorTextField.onDidEndEditing.observe(owner: label) {
-            label.text = "TextField 3: Did end editing"
+        customErrorTF.onDidEndEditing.observe(owner: label) {
+            label.text = "customErrorTF: Did end editing"
         }
 
-        customErrorTextField.onDidChangeText.observe(owner: label) { text in
-            label.text = "TextField 3: \(text ?? "<empty>")"
+        customErrorTF.onDidChangeText.observe(owner: label) { text in
+            label.text = "customErrorTF: \(text ?? "<empty>")"
         }
         
-        customErrorTextField.onReturnKeyPressed.observe(owner: label) {
-            label.text = "TextField 3: Did press return key"
+        customErrorTF.onReturnKeyPressed.observe(owner: label) {
+            label.text = "customErrorTF: Did press return key"
         }
     }
 
@@ -190,9 +190,9 @@ class ExampleController: UIViewController {
     }
 
     @objc private func showError() {
-        textField1.showError(message: "Error example")
-        textField2.showError(message: "Error example")
-        customErrorTextField.showError()
+        firstNameTF.showError(message: "Error example")
+        secondNameTF.showError(message: "Error example")
+        customErrorTF.showError()
     }
 
     @objc private func didTapOutside() {
