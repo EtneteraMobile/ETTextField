@@ -44,15 +44,17 @@ public final class ETCustomErrorTextField: ETTextField {
     public func showError() {
         isErrorHidden = false
         layoutIfNeeded()
-        // swiftlint:disable:next trailing_closure
-        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseIn, animations: {
+
+        let animation = {
             if self.isEnabled || self.style.disabledTintColor == nil {
                 self.border.updateColor(self.errorColor)
             }
             self.errorView.alpha = 1.0
             self.errorView.isHidden = false
             self.layoutIfNeeded()
-        })
+        }
+
+        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseIn, animations: animation)
     }
 
     /// Hides custom error view
@@ -62,16 +64,22 @@ public final class ETCustomErrorTextField: ETTextField {
     override public func hideError() {
         isErrorHidden = true
         layoutIfNeeded()
-        UIView.animate(withDuration: animationDuration,
-                       delay: 0,
-                       options: .curveEaseOut,
-                       animations: {
+
+        let animation = {
             self.border.updateColor(self.borderColor)
             self.errorView.alpha = 0.0
             self.layoutIfNeeded()
-        }, completion: { _ in
+        }
+
+        let completion: (Bool) -> Void = { _ in
             self.errorView.isHidden = true
-        })
+        }
+
+        UIView.animate(withDuration: animationDuration,
+                       delay: 0,
+                       options: .curveEaseOut,
+                       animations: animation,
+                       completion: completion)
     }
 
     @available(*, unavailable)

@@ -30,7 +30,7 @@ class ExampleController: UIViewController {
     }
 
     private func setupFirstNameTF() {
-        let style = TextFieldStyle(background: #colorLiteral(white: 245.0 / 255.0, alpha: 1),
+        let style = TextFieldStyle(background: #colorLiteral(red: 0.9499999881, green: 0.9499999881, blue: 0.9499999881, alpha: 1) ,
                                    font: UIFont.systemFont(ofSize: 14, weight: .light),
                                    tintColor: .blue,
                                    cornerRadius: 5.0,

@@ -189,8 +189,8 @@ open class ETTextField: UITextField {
         isErrorHidden = false
         errorLabel.text = message
         self.layoutIfNeeded()
-        // swiftlint:disable:next trailing_closure
-        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseIn, animations: {
+
+        let animation = {
             if self.isEnabled || self.style.disabledTintColor == nil {
                 self.border.updateColor(self.errorColor)
             }
@@ -199,25 +199,33 @@ open class ETTextField: UITextField {
             self.errorLabelShowConstraint?.isActive = true
             self.errorLabel.alpha = 1.0
             self.layoutIfNeeded()
-        })
+        }
+
+        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseIn, animations: animation)
     }
 
     /// Hides error view with custom message
     open func hideError() {
         isErrorHidden = true
         self.layoutIfNeeded()
-        UIView.animate(withDuration: animationDuration,
-                       delay: 0,
-                       options: .curveEaseOut,
-                       animations: {
+
+        let animation = {
             self.border.updateColor(self.borderColor)
             self.errorLabelShowConstraint?.isActive = false
             self.errorLabelHideConstraint?.isActive = true
             self.errorLabel.alpha = 0.0
             self.layoutIfNeeded()
-        }, completion: { _ in
+        }
+
+        let completion: (Bool) -> Void = { _ in
             self.errorLabel.text = nil
-        })
+        }
+
+        UIView.animate(withDuration: animationDuration,
+                       delay: 0,
+                       options: .curveEaseOut,
+                       animations: animation,
+                       completion: completion)
     }
 
     /// Shows title above the`textField`
@@ -230,17 +238,22 @@ open class ETTextField: UITextField {
             return
         }
 
+        let animation = {
+            self.titleLabelHideConstraint?.isActive = false
+            self.titleLabelShowConstraint?.isActive = true
+            self.titleLabel.alpha = 1.0
+            self.layoutIfNeeded()
+        }
+
+        let completion: (Bool) -> Void = { _ in
+            self.isTitleHidden = false
+        }
+
         UIView.animate(withDuration: animationDuration,
                        delay: 0,
                        options: .curveEaseIn,
-                       animations: {
-                        self.titleLabelHideConstraint?.isActive = false
-                        self.titleLabelShowConstraint?.isActive = true
-                        self.titleLabel.alpha = 1.0
-                        self.layoutIfNeeded()
-        }, completion: { _ in
-            self.isTitleHidden = false
-        })
+                       animations: animation,
+                       completion: completion)
     }
 
     /// Hides title with alpha and translate animation
@@ -251,17 +264,22 @@ open class ETTextField: UITextField {
             return
         }
 
+        let animation = {
+            self.titleLabelHideConstraint?.isActive = true
+            self.titleLabelShowConstraint?.isActive = false
+            self.titleLabel.alpha = 0.0
+            self.layoutIfNeeded()
+        }
+
+        let completion: (Bool) -> Void = { _ in
+            self.isTitleHidden = true
+        }
+
         UIView.animate(withDuration: animationDuration,
                        delay: 0,
                        options: .curveEaseOut,
-                       animations: {
-                        self.titleLabelHideConstraint?.isActive = true
-                        self.titleLabelShowConstraint?.isActive = false
-                        self.titleLabel.alpha = 0.0
-                        self.layoutIfNeeded()
-        }, completion: { _ in
-            self.isTitleHidden = true
-        })
+                       animations: animation,
+                       completion: completion)
     }
 
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
