@@ -1,6 +1,6 @@
-import XCTest
 @testable import ETTextFieldTests
+import XCTest
 
 XCTMain([
-    testCase(ETTextFieldTests.allTests),
+    testCase(ETTextFieldTests.allTests)
 ])

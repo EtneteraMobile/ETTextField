@@ -61,7 +61,6 @@ class TextFieldBorder: UIView {
             border.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
             border.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
             border.heightAnchor.constraint(equalToConstant: style.width).isActive = true
-            break
         case .left:
             left = border
             border.backgroundColor = style.color

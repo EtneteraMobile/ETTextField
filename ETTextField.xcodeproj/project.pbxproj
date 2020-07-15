@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11B4908124B8745800265D87 /* ETCustomErrorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4908024B8745800265D87 /* ETCustomErrorTextField.swift */; };
 		52D6D9871BEFF229002C0205 /* ETTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* ETTextField.framework */; };
+		6592CFBD24BDFB91001F629F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6592CFBB24BDFB91001F629F /* README.md */; };
+		6592CFBE24BDFB91001F629F /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 6592CFBC24BDFB91001F629F /* CHANGELOG.md */; };
 		80DEDFCC249A4C9A0049F0B9 /* TextFieldBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DEDFCB249A4C9A0049F0B9 /* TextFieldBorder.swift */; };
 		8933C7851EB5B820000D00A4 /* ETTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* ETTextField.swift */; };
 		8933C7901EB5B82D000D00A4 /* ETTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* ETTextFieldTests.swift */; };
@@ -55,8 +58,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		11B4908024B8745800265D87 /* ETCustomErrorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETCustomErrorTextField.swift; sourceTree = "<group>"; };
 		52D6D97C1BEFF229002C0205 /* ETTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ETTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9861BEFF229002C0205 /* ETTextField-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ETTextField-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6592CFBB24BDFB91001F629F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6592CFBC24BDFB91001F629F /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		80DEDFCB249A4C9A0049F0B9 /* TextFieldBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldBorder.swift; sourceTree = "<group>"; };
 		8933C7841EB5B820000D00A4 /* ETTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETTextField.swift; sourceTree = "<group>"; };
 		8933C7891EB5B82A000D00A4 /* ETTextFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETTextFieldTests.swift; sourceTree = "<group>"; };
@@ -105,6 +111,8 @@
 		52D6D9721BEFF229002C0205 = {
 			isa = PBXGroup;
 			children = (
+				6592CFBC24BDFB91001F629F /* CHANGELOG.md */,
+				6592CFBB24BDFB91001F629F /* README.md */,
 				8933C7811EB5B7E0000D00A4 /* Sources */,
 				8933C7831EB5B7EB000D00A4 /* Tests */,
 				52D6D99C1BEFF38C002C0205 /* Configs */,
@@ -156,6 +164,7 @@
 				8933C7841EB5B820000D00A4 /* ETTextField.swift */,
 				8EF313B622FEF39700280089 /* TextFieldStyle.swift */,
 				80DEDFCB249A4C9A0049F0B9 /* TextFieldBorder.swift */,
+				11B4908024B8745800265D87 /* ETCustomErrorTextField.swift */,
 			);
 			path = ETTextField;
 			sourceTree = "<group>";
@@ -218,6 +227,7 @@
 				52D6D9781BEFF229002C0205 /* Frameworks */,
 				52D6D9791BEFF229002C0205 /* Headers */,
 				52D6D97A1BEFF229002C0205 /* Resources */,
+				52F9EB1224BEF25A00639D2D /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -315,6 +325,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6592CFBD24BDFB91001F629F /* README.md in Resources */,
+				6592CFBE24BDFB91001F629F /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +350,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		52F9EB1224BEF25A00639D2D /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		8EF313C2230039F100280089 /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -366,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80DEDFCC249A4C9A0049F0B9 /* TextFieldBorder.swift in Sources */,
+				11B4908124B8745800265D87 /* ETCustomErrorTextField.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* ETTextField.swift in Sources */,
 				8EF313B722FEF39700280089 /* TextFieldStyle.swift in Sources */,
 			);
@@ -555,6 +586,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ETTextField.ETTextField-iOS";
 				PRODUCT_NAME = ETTextField;
@@ -583,6 +615,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ETTextField.ETTextField-iOS";
 				PRODUCT_NAME = ETTextField;
 				SKIP_INSTALL = YES;

@@ -1,10 +1,10 @@
 # ETTextField
 
-_Last revision: 15.6.2020_
+_Last revision: 15.7.2020_
 
 ETTextField is an extension of traditional UITextField which simplifies its customization and event handling. To get a quick idea jump to example section below!
 
-![Example](Docs/example.png)
+![Demo](Docs/demo.gif)
 
 ## Features
 - Fully customizable UI (colors, borders, insets, etc.)
@@ -12,8 +12,8 @@ ETTextField is an extension of traditional UITextField which simplifies its cust
 - Error messages below text field with custom tint color
 - Observation of user interaction with ETBinding events
 
-## Usage
-Create style for your text field with `TextFieldStyle`:
+## Usage `ETTextField`
+### Create style for your text field with `TextFieldStyle`:
 ```swift
 let style = TextFieldStyle(
     background: UIColor(white: 245.0/255.0, alpha: 1),
@@ -25,7 +25,7 @@ let style = TextFieldStyle(
     borderColor: .blue
 )
 ```
-Setup text field:
+### Setup text field:
 ```swift
 let textField = ETTextField()
 textField.update(with: style)
@@ -34,7 +34,7 @@ textField.title = "YOUR FIRST NAME:"
 textField.titleOffset = -3.0
 view.addSubview(textField)
 ```
-Observe user interaction:
+### Observe user interaction:
 ```swift
 textField.onDidBeginEditing.observe(owner: label) {
     // When user starts editing
@@ -49,17 +49,33 @@ textField.onReturnKeyPressed.observe(owner: self) {
     // When user hits return
 }
 ```
-Show error messages:
+
+### Error messages:
+#### Show
 ```swift
 textField.showError(message: "Error example")
 ```
+
+#### Hide
+The error message is automatically hidden if any change occurs on the `textField`. 
+
+You can explicitly hide the error message:
+```swift
+textField.hideError()
+```
+
+## Usage `ETCustomErrorTextField`
+
+### Setup text field:
+The only difference from `ETTextField` is thah you can inject custom view.
+```swift
+let textField = ETCustomErrorTextField(errorView: self.makeCustomErrorView())
+```
+
+
 For more info see included example project.
 
 ## Installation
-
-### CocoaPods
-
-Add `pod 'ETTextField'` to your Podfile.
 
 ### Carthage
 
