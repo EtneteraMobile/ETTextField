@@ -25,16 +25,19 @@ open class ETTextField: UITextField {
             titleLabel.text = title
         }
     }
+
     public var titleOffset: CGFloat = 0.0 {
         didSet {
             titleLabelShowConstraint?.constant = titleOffset
         }
     }
+
     override open var placeholder: String? {
         didSet {
             attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor: style.placeholderColor])
         }
     }
+
     override open var isEnabled: Bool {
         didSet {
             update(with: style)
@@ -172,6 +175,15 @@ open class ETTextField: UITextField {
 
     // MARK: - Actions
 
+    /// Shows simple error with custom message below the`textField`.
+    ///
+    /// - Note:
+    ///   - The error message is automatically hidden if any change occurs on the `textField`.
+    ///   - You can explicitly hide the error message by using `hideError()`.
+    ///
+    /// - Warning: View with error message is **out of bounds** of the `textField`.
+    ///
+    /// - Parameter message: custom message
     open func showError(message: String) {
         isErrorHidden = false
         errorLabel.text = message
@@ -188,6 +200,7 @@ open class ETTextField: UITextField {
         })
     }
 
+    /// Hides error view with custom message
     open func hideError() {
         isErrorHidden = true
         self.layoutIfNeeded()
@@ -202,6 +215,12 @@ open class ETTextField: UITextField {
         })
     }
 
+
+    /// Shows title above the`textField`
+    ///
+    /// - Note: Its shown with alpha and translate animation.
+    ///
+    /// - Warning: View with title is **out of bounds** of the `textField`.
     open func showTitle() {
         guard style.showTitle == true, isTitleHidden == true else {
             return
@@ -219,6 +238,10 @@ open class ETTextField: UITextField {
         })
     }
 
+
+    /// Hides title with alpha and translate animation
+    ///
+    /// - Note: Its hidden with alpha and translate animation.
     open func hideTitle() {
         guard isTitleHidden == false else {
             return

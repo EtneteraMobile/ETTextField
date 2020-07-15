@@ -16,7 +16,8 @@ public class ETCustomErrorTextField: ETTextField {
     // MARK: - Initializer
     
     
-    /// Initializing text field with style and custom error view
+    /// Initializing text field with style and custom error view (`UIView`)
+    ///
     /// - Parameters:
     ///   - style: TextFieldStyle
     ///   - errorView: UIView
@@ -25,7 +26,8 @@ public class ETCustomErrorTextField: ETTextField {
         super.init(style: style)
         setupErrorView()
     }
-    
+
+
     @available(*, unavailable)
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -33,7 +35,14 @@ public class ETCustomErrorTextField: ETTextField {
     
     // MARK: - Content
     
-    /// Shows custom error view
+    /// Shows custom error view below the`textField`.
+    ///
+    /// - Note:
+    ///   - The error message is automatically hidden if any change occurs on the `textField`.
+    ///   - You can explicitly hide the error message by using `hideError()`.
+    ///   - The error view is shown with alpha animation - from 0 to 1.
+    ///
+    /// - Warning: Custom error view is **out of bounds** of the `textField`.
     public func showError() {
         isErrorHidden = false
         layoutIfNeeded()
@@ -48,6 +57,9 @@ public class ETCustomErrorTextField: ETTextField {
     }
     
     /// Hides custom error view
+    ///
+    /// - Note:
+    ///   - The error view is hidden with alpha animation - from 1 to 0.
     override public func hideError() {
         isErrorHidden = true
         layoutIfNeeded()
