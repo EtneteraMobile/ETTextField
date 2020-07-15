@@ -6,8 +6,8 @@
 //  Copyright © 2019 ETTextField. All rights reserved.
 //
 
-import UIKit
 import ETBinding
+import UIKit
 
 open class ETTextField: UITextField {
 
@@ -34,7 +34,8 @@ open class ETTextField: UITextField {
 
     override open var placeholder: String? {
         didSet {
-            attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor: style.placeholderColor])
+            attributedPlaceholder = NSAttributedString(string: placeholder ?? "",
+                                                       attributes: [NSAttributedString.Key.foregroundColor: style.placeholderColor])
         }
     }
 
@@ -56,9 +57,9 @@ open class ETTextField: UITextField {
     private var errorLabelHideConstraint: NSLayoutConstraint?
     private var errorLabelLeftConstraint: NSLayoutConstraint?
     private var isTitleHidden: Bool = true
-    
+
     // MARK: protected
-    
+
     let animationDuration: TimeInterval = 0.2
     let errorColor: UIColor = .red
     var border = TextFieldBorder()
@@ -188,6 +189,7 @@ open class ETTextField: UITextField {
         isErrorHidden = false
         errorLabel.text = message
         self.layoutIfNeeded()
+        // swiftlint:disable:next trailing_closure
         UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseIn, animations: {
             if self.isEnabled || self.style.disabledTintColor == nil {
                 self.border.updateColor(self.errorColor)
@@ -204,7 +206,10 @@ open class ETTextField: UITextField {
     open func hideError() {
         isErrorHidden = true
         self.layoutIfNeeded()
-        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: animationDuration,
+                       delay: 0,
+                       options: .curveEaseOut,
+                       animations: {
             self.border.updateColor(self.borderColor)
             self.errorLabelShowConstraint?.isActive = false
             self.errorLabelHideConstraint?.isActive = true
@@ -214,7 +219,6 @@ open class ETTextField: UITextField {
             self.errorLabel.text = nil
         })
     }
-
 
     /// Shows title above the`textField`
     ///
@@ -226,7 +230,8 @@ open class ETTextField: UITextField {
             return
         }
 
-        UIView.animate(withDuration: animationDuration, delay: 0,
+        UIView.animate(withDuration: animationDuration,
+                       delay: 0,
                        options: .curveEaseIn,
                        animations: {
                         self.titleLabelHideConstraint?.isActive = false
@@ -238,7 +243,6 @@ open class ETTextField: UITextField {
         })
     }
 
-
     /// Hides title with alpha and translate animation
     ///
     /// - Note: Its hidden with alpha and translate animation.
@@ -247,7 +251,8 @@ open class ETTextField: UITextField {
             return
         }
 
-        UIView.animate(withDuration: animationDuration, delay: 0,
+        UIView.animate(withDuration: animationDuration,
+                       delay: 0,
                        options: .curveEaseOut,
                        animations: {
                         self.titleLabelHideConstraint?.isActive = true
@@ -271,7 +276,8 @@ open class ETTextField: UITextField {
         return bounds.inset(by: insets)
     }
 
-    @objc func textFieldDidChange(_ textField: UITextField) {
+    @objc
+    func textFieldDidChange(_ textField: UITextField) {
 
         if isErrorHidden == false {
             hideError()

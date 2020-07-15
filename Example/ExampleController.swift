@@ -6,8 +6,8 @@
 //  Copyright © 2019 ETTextField. All rights reserved.
 //
 
-import UIKit
 import ETTextField
+import UIKit
 
 class ExampleController: UIViewController {
 
@@ -30,13 +30,13 @@ class ExampleController: UIViewController {
     }
 
     private func setupFirstNameTF() {
-        let style = TextFieldStyle(background: UIColor(white: 245.0/255.0, alpha: 1),
-                                    font: UIFont.systemFont(ofSize: 14, weight: .light),
-                                    tintColor: .blue,
-                                    cornerRadius: 5.0,
-                                    insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10),
-                                    border: [.bottom],
-                                    borderColor: .blue)
+        let style = TextFieldStyle(background: #colorLiteral(white: 245.0 / 255.0, alpha: 1),
+                                   font: UIFont.systemFont(ofSize: 14, weight: .light),
+                                   tintColor: .blue,
+                                   cornerRadius: 5.0,
+                                   insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10),
+                                   border: [.bottom],
+                                   borderColor: .blue)
         firstNameTF.update(with: style)
         firstNameTF.placeholder = "Enter your first name"
         firstNameTF.title = "YOUR FIRST NAME:"
@@ -53,12 +53,12 @@ class ExampleController: UIViewController {
 
     private func setupSecondNameTF() {
         let style = TextFieldStyle(background: .clear,
-                                    font: UIFont.systemFont(ofSize: 14, weight: .light),
-                                    tintColor: .blue,
-                                    cornerRadius: 0.0,
-                                    insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10),
-                                    border: [.top, .right, .bottom, .left],
-                                    borderColor: .lightGray)
+                                   font: UIFont.systemFont(ofSize: 14, weight: .light),
+                                   tintColor: .blue,
+                                   cornerRadius: 0.0,
+                                   insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10),
+                                   border: [.top, .right, .bottom, .left],
+                                   borderColor: .lightGray)
         secondNameTF.update(with: style)
         secondNameTF.placeholder = "Enter your last name"
         secondNameTF.title = "YOUR LAST NAME:"
@@ -72,7 +72,7 @@ class ExampleController: UIViewController {
         secondNameTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         secondNameTF.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
-    
+
     private func setupCustomErrorTF() {
         let style = TextFieldStyle(background: .clear,
                                    font: UIFont.systemFont(ofSize: 14, weight: .light),
@@ -80,14 +80,14 @@ class ExampleController: UIViewController {
                                    cornerRadius: 0.0,
                                    insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10),
                                    borderColor: .lightGray)
-        
+
         customErrorTF.update(with: style)
         customErrorTF.placeholder = "Enter your e-mail"
         customErrorTF.title = "YOUR E-MAIL"
-        
+
         view.addSubview(customErrorTF)
         customErrorTF.translatesAutoresizingMaskIntoConstraints = false
-        
+
         customErrorTF.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         customErrorTF.topAnchor.constraint(equalTo: secondNameTF.bottomAnchor, constant: 35).isActive = true
         customErrorTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
@@ -160,7 +160,7 @@ class ExampleController: UIViewController {
         customErrorTF.onDidChangeText.observe(owner: label) { text in
             label.text = "customErrorTF: \(text ?? "<empty>")"
         }
-        
+
         customErrorTF.onReturnKeyPressed.observe(owner: label) {
             label.text = "customErrorTF: Did press return key"
         }
@@ -169,7 +169,7 @@ class ExampleController: UIViewController {
     private func makeCustomErrorView() -> UIView {
         let customErrorView = UIView()
         customErrorView.backgroundColor = .red
-        
+
         let errorLabel = UILabel()
         errorLabel.numberOfLines = 0
         errorLabel.lineBreakMode = .byWordWrapping
@@ -177,9 +177,9 @@ class ExampleController: UIViewController {
         errorLabel.textColor = .white
         errorLabel.font = UIFont.systemFont(ofSize: 12)
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
-        
+
         customErrorView.addSubview(errorLabel)
-        
+
         NSLayoutConstraint.activate([
             errorLabel.topAnchor.constraint(equalTo: customErrorView.topAnchor, constant: 5),
             errorLabel.leadingAnchor.constraint(equalTo: customErrorView.leadingAnchor, constant: 5),
@@ -189,14 +189,15 @@ class ExampleController: UIViewController {
         return customErrorView
     }
 
-    @objc private func showError() {
+    @objc
+    private func showError() {
         firstNameTF.showError(message: "Error example")
         secondNameTF.showError(message: "Error example")
         customErrorTF.showError()
     }
 
-    @objc private func didTapOutside() {
+    @objc
+    private func didTapOutside() {
         view.endEditing(true)
     }
 }
-

@@ -6,9 +6,9 @@
 //  Copyright © 2019 ETTextField. All rights reserved.
 //
 
+import ETTextField
 import Foundation
 import XCTest
-import ETTextField
 
 class ETTextFieldTests: XCTestCase {
     func testExample() {
@@ -16,8 +16,8 @@ class ETTextFieldTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         //// XCTAssertEqual(ETTextField().text, "Hello, World!")
     }
-    
+
     static var allTests = [
-        ("testExample", testExample),
+        ("testExample", testExample)
     ]
 }
