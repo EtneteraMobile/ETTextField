@@ -1,6 +1,6 @@
 # ETTextField
 
-_Last revision: 15.7.2020_
+_Last revision: 29.7.2020_
 
 ETTextField is an extension of traditional UITextField which simplifies its customization and event handling. To get a quick idea jump to example section below!
 
