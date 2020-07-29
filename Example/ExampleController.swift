@@ -84,6 +84,7 @@ class ExampleController: UIViewController {
                                    borderColor: .lightGray)
 
         customErrorTF.update(with: style)
+        customErrorTF.autocapitalizationType = .none
         customErrorTF.placeholder = "Enter your e-mail"
         customErrorTF.title = "YOUR E-MAIL"
 
@@ -104,6 +105,7 @@ class ExampleController: UIViewController {
                                    borderColor: .lightGray)
 
         customErrorWithIconTF.update(with: style)
+        customErrorWithIconTF.autocapitalizationType = .none
         customErrorWithIconTF.placeholder = "Repeat your e-mail"
         customErrorWithIconTF.title = "YOUR E-MAIL"
 
