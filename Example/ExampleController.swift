@@ -48,7 +48,7 @@ class ExampleController: UIViewController {
         firstNameTF.translatesAutoresizingMaskIntoConstraints = false
 
         firstNameTF.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        firstNameTF.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        firstNameTF.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
         firstNameTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         firstNameTF.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
@@ -70,7 +70,7 @@ class ExampleController: UIViewController {
         secondNameTF.translatesAutoresizingMaskIntoConstraints = false
 
         secondNameTF.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        secondNameTF.topAnchor.constraint(equalTo: firstNameTF.bottomAnchor, constant: 35).isActive = true
+        secondNameTF.topAnchor.constraint(equalTo: firstNameTF.bottomAnchor, constant: 45).isActive = true
         secondNameTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         secondNameTF.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
@@ -91,7 +91,7 @@ class ExampleController: UIViewController {
         customErrorTF.translatesAutoresizingMaskIntoConstraints = false
 
         customErrorTF.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        customErrorTF.topAnchor.constraint(equalTo: secondNameTF.bottomAnchor, constant: 35).isActive = true
+        customErrorTF.topAnchor.constraint(equalTo: secondNameTF.bottomAnchor, constant: 45).isActive = true
         customErrorTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
     }
 
@@ -104,14 +104,14 @@ class ExampleController: UIViewController {
                                    borderColor: .lightGray)
 
         customErrorWithIconTF.update(with: style)
-        customErrorWithIconTF.placeholder = "Enter your e-mail"
+        customErrorWithIconTF.placeholder = "Repeat your e-mail"
         customErrorWithIconTF.title = "YOUR E-MAIL"
 
         view.addSubview(customErrorWithIconTF)
         customErrorWithIconTF.translatesAutoresizingMaskIntoConstraints = false
 
         customErrorWithIconTF.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        customErrorWithIconTF.topAnchor.constraint(equalTo: customErrorTF.bottomAnchor, constant: 35).isActive = true
+        customErrorWithIconTF.topAnchor.constraint(equalTo: customErrorTF.bottomAnchor, constant: 45).isActive = true
         customErrorWithIconTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
     }
 
