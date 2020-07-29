@@ -24,8 +24,9 @@ public final class ETCustomErrorTextField: ETTextField {
     /// Initializing text field with style and custom error view (`UIView`)
     ///
     /// - Parameters:
-    ///   - style: TextFieldStyle
-    ///   - errorView: UIView
+    ///   - style: Style of the `ETTextField`
+    ///   - errorView: Custom `UIView` used as a errorView under the `ETTextField`
+    ///   - errorIcon: Optiona `UIImage` showed at the right side of `ETTextField` in case of error.
     public init(style: TextFieldStyle = TextFieldStyle(), errorView: UIView, errorIcon: UIImage? = nil) {
         self.errorView = errorView
         self.errorIcon = errorIcon
@@ -45,10 +46,16 @@ public final class ETCustomErrorTextField: ETTextField {
 
     /// Shows custom error view below the`textField`.
     ///
+    /// - Parameter onFocusOnly: The flag that indicates that the custom error view should be showed
+    /// only when textfield is the first responder. For a `true` value there will be animation that shows
+    /// or hides custom error view while becoming/stoping being the first responder. Otherwise the custom error view is always visible
+    /// in error state of `ETCustomErrorTextField`. Default value is `false`.g
+    ///
     /// - Note:
     ///   - The error message is automatically hidden if any change occurs on the `textField`.
     ///   - You can explicitly hide the error message by using `hideError()`.
     ///   - The error view is shown with alpha animation - from 0 to 1.
+    ///   - The optional `errorIcon` provided in intialization is showed on the right side.
     ///
     /// - Warning: Custom error view is **out of bounds** of the `textField`.
     public func showError(onFocusOnly: Bool = false) {
@@ -81,10 +88,11 @@ public final class ETCustomErrorTextField: ETTextField {
         UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseIn, animations: animation)
     }
 
-    /// Hides custom error view
+    /// Hides custom error view and `errorIcon`.
     ///
     /// - Note:
     ///   - The error view is hidden with alpha animation - from 1 to 0.
+    ///   -
     override public func hideError() {
         isErrorHidden = true
         layoutIfNeeded()
