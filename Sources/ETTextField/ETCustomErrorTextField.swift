@@ -11,7 +11,13 @@ import UIKit
 public final class ETCustomErrorTextField: ETTextField {
 
     // MARK: - Variables
+    // MARK: Views
     private let errorView: UIView
+    private var errorIconView: UIImageView?
+
+    // MARK: Custom content
+    private var errorIcon: UIImage?
+    private var shouldShowErrorViewOnFocusOnly: Bool = false
 
     // MARK: - Initializer
 
@@ -20,10 +26,14 @@ public final class ETCustomErrorTextField: ETTextField {
     /// - Parameters:
     ///   - style: TextFieldStyle
     ///   - errorView: UIView
-    public init(style: TextFieldStyle = TextFieldStyle(), errorView: UIView) {
+    public init(style: TextFieldStyle = TextFieldStyle(), errorView: UIView, errorIcon: UIImage? = nil) {
         self.errorView = errorView
+        self.errorIcon = errorIcon
+
         super.init(style: style)
+
         setupErrorView()
+        setupErrorIconView()
     }
 
     @available(*, unavailable)
@@ -41,16 +51,30 @@ public final class ETCustomErrorTextField: ETTextField {
     ///   - The error view is shown with alpha animation - from 0 to 1.
     ///
     /// - Warning: Custom error view is **out of bounds** of the `textField`.
-    public func showError() {
+    public func showError(onFocusOnly: Bool = false) {
         isErrorHidden = false
+        shouldShowErrorViewOnFocusOnly = onFocusOnly
+
+        self.errorView.alpha = 0.0
+        self.errorView.isHidden = false
+        self.errorIconView?.alpha = 0.0
+        self.errorIconView?.isHidden = false
+
         layoutIfNeeded()
 
         let animation = {
+            // Border
             if self.isEnabled || self.style.disabledTintColor == nil {
                 self.border.updateColor(self.errorColor)
             }
-            self.errorView.alpha = 1.0
-            self.errorView.isHidden = false
+
+            // Error views and icons
+            if self.shouldShowErrorViewOnFocusOnly == true && self.isFirstResponder == false {
+                self.errorIconView?.alpha = 1.0
+            } else {
+                self.errorView.alpha = 1.0
+            }
+
             self.layoutIfNeeded()
         }
 
@@ -68,11 +92,13 @@ public final class ETCustomErrorTextField: ETTextField {
         let animation = {
             self.border.updateColor(self.borderColor)
             self.errorView.alpha = 0.0
+            self.errorIconView?.alpha = 0.0
             self.layoutIfNeeded()
         }
 
         let completion: (Bool) -> Void = { _ in
             self.errorView.isHidden = true
+            self.errorIconView?.isHidden = true
         }
 
         UIView.animate(withDuration: animationDuration,
@@ -92,7 +118,9 @@ private extension ETCustomErrorTextField {
 
     func setupErrorView() {
         errorView.alpha = 0.0
+
         addSubview(errorView)
+
         errorView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -102,5 +130,61 @@ private extension ETCustomErrorTextField {
         ])
 
         errorView.isHidden = true
+    }
+
+    func setupErrorIconView() {
+        guard let errorIcon = errorIcon else {
+            return
+        }
+
+        let errorIconView = UIImageView()
+        errorIconView.image = errorIcon
+        errorIconView.contentMode = .scaleAspectFit
+        errorIconView.alpha = 0.0
+
+        addSubview(errorIconView)
+
+        errorIconView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            errorIconView.topAnchor.constraint(equalTo: topAnchor),
+            errorIconView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            errorIconView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+
+        errorIconView.isHidden = true
+        self.errorIconView = errorIconView
+    }
+}
+
+public extension ETCustomErrorTextField {
+    override func textFieldDidBeginEditing(_ textField: UITextField) {
+        super.textFieldDidBeginEditing(textField)
+
+        // Update visibility of errorView
+        if let errorIconView = errorIconView, self.shouldShowErrorViewOnFocusOnly == true {
+            errorView.alpha = 0.0
+            errorIconView.alpha = 1.0
+
+            UIView.animate(withDuration: animationDuration) {
+                self.errorView.alpha = 1.0
+                errorIconView.alpha = 0.0
+            }
+        }
+    }
+
+    override func textFieldDidEndEditing(_ textField: UITextField) {
+        super.textFieldDidBeginEditing(textField)
+
+        // Update visibility of errorView
+        if let errorIconView = errorIconView, self.shouldShowErrorViewOnFocusOnly == true {
+            errorView.alpha = 1.0
+            errorIconView.alpha = 0.0
+
+            UIView.animate(withDuration: animationDuration) {
+                self.errorView.alpha = 0.0
+                errorIconView.alpha = 1.0
+            }
+        }
     }
 }

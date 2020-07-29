@@ -14,6 +14,7 @@ class ExampleController: UIViewController {
     private let firstNameTF = ETTextField()
     private let secondNameTF = ETTextField()
     private lazy var customErrorTF = ETCustomErrorTextField(errorView: self.makeCustomErrorView())
+    private lazy var customErrorWithIconTF = ETCustomErrorTextField(errorView: self.makeCustomErrorView(), errorIcon: UIImage(named: "ic_error_icon"))
     private let button = UIButton()
 
     override func viewDidLoad() {
@@ -22,6 +23,7 @@ class ExampleController: UIViewController {
         setupFirstNameTF()
         setupSecondNameTF()
         setupCustomErrorTF()
+        setupCustomErrorWithIconTF()
         setupShowErrorButton()
         setupObservers()
 
@@ -93,6 +95,26 @@ class ExampleController: UIViewController {
         customErrorTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
     }
 
+    private func setupCustomErrorWithIconTF() {
+        let style = TextFieldStyle(background: .clear,
+                                   font: UIFont.systemFont(ofSize: 14, weight: .light),
+                                   tintColor: .blue,
+                                   cornerRadius: 0.0,
+                                   insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10),
+                                   borderColor: .lightGray)
+
+        customErrorWithIconTF.update(with: style)
+        customErrorWithIconTF.placeholder = "Enter your e-mail"
+        customErrorWithIconTF.title = "YOUR E-MAIL"
+
+        view.addSubview(customErrorWithIconTF)
+        customErrorWithIconTF.translatesAutoresizingMaskIntoConstraints = false
+
+        customErrorWithIconTF.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        customErrorWithIconTF.topAnchor.constraint(equalTo: customErrorTF.bottomAnchor, constant: 35).isActive = true
+        customErrorWithIconTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+    }
+
     private func setupShowErrorButton() {
         button.setTitle("Show errors", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -100,7 +122,7 @@ class ExampleController: UIViewController {
         view.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        button.topAnchor.constraint(equalTo: customErrorTF.bottomAnchor, constant: 35).isActive = true
+        button.topAnchor.constraint(equalTo: customErrorWithIconTF.bottomAnchor, constant: 35).isActive = true
         button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         button.heightAnchor.constraint(equalToConstant: 30).isActive = true
         button.addTarget(self, action: #selector(showError), for: .touchUpInside)
@@ -164,6 +186,22 @@ class ExampleController: UIViewController {
         customErrorTF.onReturnKeyPressed.observe(owner: label) {
             label.text = "customErrorTF: Did press return key"
         }
+
+        customErrorWithIconTF.onDidBeginEditing.observe(owner: label) {
+            label.text = "customErrorWithIconTF: Did begin editing"
+        }
+
+        customErrorWithIconTF.onDidEndEditing.observe(owner: label) {
+            label.text = "customErrorWithIconTF: Did end editing"
+        }
+
+        customErrorWithIconTF.onDidChangeText.observe(owner: label) { text in
+            label.text = "customErrorWithIconTF: \(text ?? "<empty>")"
+        }
+
+        customErrorWithIconTF.onReturnKeyPressed.observe(owner: label) {
+            label.text = "customErrorWithIconTF: Did press return key"
+        }
     }
 
     private func makeCustomErrorView() -> UIView {
@@ -194,6 +232,7 @@ class ExampleController: UIViewController {
         firstNameTF.showError(message: "Error example")
         secondNameTF.showError(message: "Error example")
         customErrorTF.showError()
+        customErrorWithIconTF.showError(onFocusOnly: true)
     }
 
     @objc
