@@ -49,13 +49,13 @@ public final class ETCustomErrorTextField: ETTextField {
     /// - Parameter onFocusOnly: The flag that indicates that the custom error view should be showed
     /// only when textfield is the first responder. For a `true` value there will be animation that shows
     /// or hides custom error view while becoming/stoping being the first responder. Otherwise the custom error view is always visible
-    /// in error state of `ETCustomErrorTextField`. Default value is `false`.g
+    /// in error state. Default value is `false`.
     ///
     /// - Note:
     ///   - The error message is automatically hidden if any change occurs on the `textField`.
     ///   - You can explicitly hide the error message by using `hideError()`.
     ///   - The error view is shown with alpha animation - from 0 to 1.
-    ///   - The optional `errorIcon` provided in intialization is showed on the right side.
+    ///   - The optional `errorIcon` provided in intialization is showed on the right side when the errorView is not visible (out of the textfile's editing mode).
     ///
     /// - Warning: Custom error view is **out of bounds** of the `textField`.
     public func showError(onFocusOnly: Bool = false) {
