@@ -1,6 +1,6 @@
 # ETTextField
 
-_Last revision: 15.7.2020_
+_Last revision: 29.7.2020_
 
 ETTextField is an extension of traditional UITextField which simplifies its customization and event handling. To get a quick idea jump to example section below!
 
@@ -67,9 +67,14 @@ textField.hideError()
 ## Usage `ETCustomErrorTextField`
 
 ### Setup text field:
-The only difference from `ETTextField` is thah you can inject custom view.
+The difference from `ETTextField` is that you can inject custom view and optionaly custom error icon that will be displayed on the right side of the field.
+There's also the possibility to show custom error view only while user edits the textfield. For this you need to call `showError(onFocusOnly: true)`.
 ```swift
 let textField = ETCustomErrorTextField(errorView: self.makeCustomErrorView())
+```
+or with custom error icon
+```swift
+let textField = ETCustomErrorTextField(errorView: self.makeCustomErrorView(), errorIcon: UIImage(named: "ic_error_icon"))
 ```
 
 
