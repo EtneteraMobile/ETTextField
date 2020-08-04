@@ -182,7 +182,7 @@ public extension ETCustomErrorTextField {
     }
 
     override func textFieldDidEndEditing(_ textField: UITextField) {
-        super.textFieldDidBeginEditing(textField)
+        super.textFieldDidEndEditing(textField)
 
         // Update visibility of errorView
         if let errorIconView = errorIconView, self.shouldShowErrorViewOnFocusOnly == true {
