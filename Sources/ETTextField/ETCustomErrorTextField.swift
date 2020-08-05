@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class ETCustomErrorTextField: ETTextField {
+open class ETCustomErrorTextField: ETTextField {
 
     // MARK: - Variables
     // MARK: Views
