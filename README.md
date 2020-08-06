@@ -76,7 +76,7 @@ or with custom error icon
 ```swift
 let textField = ETCustomErrorTextField(errorView: self.makeCustomErrorView(), errorIcon: UIImage(named: "ic_error_icon"))
 ```
-
+You can also inherit from the class.
 
 For more info see included example project.
 
