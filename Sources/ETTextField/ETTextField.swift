@@ -61,7 +61,6 @@ open class ETTextField: UITextField {
     // MARK: protected
 
     let animationDuration: TimeInterval = 0.2
-    let errorColor: UIColor = .red
     var border = TextFieldBorder()
     var borderColor: UIColor
     var isErrorHidden: Bool = true
@@ -113,7 +112,7 @@ open class ETTextField: UITextField {
     private func setupErrorLabel() {
         errorLabel.alpha = 0.0
         errorLabel.font = UIFont.systemFont(ofSize: 12)
-        errorLabel.textColor = errorColor
+        errorLabel.textColor = style.errorColor
 
         addSubview(errorLabel)
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -153,6 +152,7 @@ open class ETTextField: UITextField {
         backgroundView.layer.cornerRadius = style.cornerRadius
         insets = style.insets
         tintColor = style.tintColor
+        errorLabel.textColor = style.errorColor
 
         if let disabledColor = style.disabledTintColor, !isEnabled {
             titleLabel.textColor = disabledColor
@@ -164,7 +164,7 @@ open class ETTextField: UITextField {
 
         border.update(with: TextFieldBorder.Style(
             sides: style.border,
-            color: isErrorHidden ? borderColor : errorColor,
+            color: isErrorHidden ? borderColor : style.errorColor,
             width: style.borderWidth,
             cornerRadius: style.cornerRadius
         ))
@@ -192,7 +192,7 @@ open class ETTextField: UITextField {
 
         let animation = {
             if self.isEnabled || self.style.disabledTintColor == nil {
-                self.border.updateColor(self.errorColor)
+                self.border.updateColor(self.style.errorColor)
             }
 
             self.errorLabelHideConstraint?.isActive = false

@@ -72,7 +72,7 @@ open class ETCustomErrorTextField: ETTextField {
         let animation = {
             // Border
             if self.isEnabled || self.style.disabledTintColor == nil {
-                self.border.updateColor(self.errorColor)
+                self.border.updateColor(self.style.errorColor)
             }
 
             // Error views and icons
