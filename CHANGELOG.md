@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fixed `Package.swift` for support minimal swift version 4.2 
+- Fixed `Package.swift` for support minimal swift version 4.2 and fix config of dependency
 
 ## [1.0.4] - 2020-11-24
 
